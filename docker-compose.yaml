@@ -4,6 +4,11 @@ services:
     build:
       context: ./
       dockerfile: ./dockerfiles/jenkins.dockerfile
+      args:
+        HOST_UID: ${HOST_UID}
+        HOST_GID: ${HOST_GID}
+    env_file:
+      - ./env/.env
     ports:
       - ${HOST_PORT}:8080
       - ${HOST_PORT_ANOTHER}:50000
