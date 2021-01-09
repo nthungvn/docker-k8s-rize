@@ -1,3 +1,8 @@
 #! /bin/bash
 
-docker-compose build --build-arg HOST_UID=1004 --build-arg HOST_GID=999
+docker-compose build
+# Start jenkins container and copy the admin password
+docker-compose up
+# Then can continue to setup and enventually can stop to start as deattache mode
+docker-compose down
+docker-compose up -d
