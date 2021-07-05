@@ -5,13 +5,11 @@ services:
       context: ./
       dockerfile: ./dockerfiles/jenkins.dockerfile
       args:
-        HOST_UID: 1004
-        HOST_GID: 999
-    env_file:
-      - ./env/.env
+        HOST_UID: $HOST_UID
+        HOST_GID: $HOST_GID
     ports:
-      - 8080:8080
-      - 50000:50000
+      - $HOST_PORT:8080
+      - $HOST_PORT_ANOTHER:50000
     volumes:
-      - ~/jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
+      - $HOST_JENKINS_DATA_VOLUME:/var/jenkins_home
+      - $HOST_DOCKER_SOCK:/var/run/docker.sock
